@@ -28,28 +28,6 @@ public class SFScenario{
         walls = new LinkedList<SFWall>();
         waypoints = new LinkedList<SFWaypoint>();
     }
-    
-    public static void main(String args[]){
-        SFScenario sample = new SFScenario();
-        File towrite = new File("/Users/victor/Desktop/resultssss.txt");
-        readFromXML();
-        Writer writer;
-        try{ writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("/Users/victor/Desktop/resultssss.txt"), "utf-8"));
-            
-        }
-        catch(Exception e){
-            return;
-        }
-        for(int i=0;i<100;i++){
-            moveAgents();
-            try{
-                writer.write(getInfo());
-            }
-            catch(Exception e){
-            
-            }
-        }
-    }
     public static LinkedList<SFWaypoint> searchByID(LinkedList<XAddWaypoint> x){
         LinkedList<SFWaypoint> toReturn = new LinkedList<SFWaypoint>();
         for(int i=0;i<x.size();i++){
@@ -61,7 +39,7 @@ public class SFScenario{
         }
         return toReturn;
     }
-    public static void readFromXML(){
+    public static void readFromXML(String XMLFile){
         
         LinkedList<XWall> rwall = new LinkedList<XWall>();
         LinkedList<XAgent> ragent = new LinkedList<XAgent>();
@@ -71,7 +49,7 @@ public class SFScenario{
         double tau = 0.5;
         double mass = 1;
         
-        MainReader rd = new MainReader("/Users/victor/Desktop/CMSC 190 Documentation/maps/fire2.xml");
+        MainReader rd = new MainReader(XMLFile);
         rd.readXML();
         
         if(rd!=null){
