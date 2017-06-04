@@ -36,6 +36,7 @@ public class SFAgent{
             //v = 0.5 * v + a * h;
             SFVector accel = SFVector.add(SFVector.add(desiredForce(), wallForce(walls)), pedForce(agents));
             vel = SFVector.add(vel.scale(0.5), accel.scale(tau));
+            if(this.destination.getFirst().inWaypoint(this.pos)) destination.removeFirst();
         }
     }
     public void printInfo(){
